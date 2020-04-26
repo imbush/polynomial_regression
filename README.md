@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # polynomial_regression
 A series of functions for polynomial regression. This project is still in progress.
 
@@ -20,3 +21,12 @@ Here is an example of linear least squares using the data set found in [main.py]
 - [x] Covariance
 - [x] Least Squares Regression
 - [ ] Polynomial matrix regression
+=======
+# Polynomial Regression
+
+## Least Squares Linear Regression
+Least squares linear regression is a method of calculating the line of best fit which has the smallest total variance to each point.
+
+The line of best fit has the equation: y = mx + b
+The distance to the line of best fit f()
+>>>>>>> 6f690d222130785f16dc0008e3aab25a1dc3bc3f
