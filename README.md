@@ -2,7 +2,7 @@
 A series of functions for polynomial regression. This project is still in progress.
 
 ## Least Squares
-Least squares regression produces the line of best fit which minimizes the square of the vertical offsets of each datapoint (their variance). The least squares equation is as follows:
+Least squares regression produces the line of best fit which minimizes the square of the vertical offsets of each datapoint (their variance). The least squares equation is as follows:<br/>
 ![least squares equation](/readme_images/least_squares.png)
 
 The equations for variance and covariance can be substituted into this equation to produce:
