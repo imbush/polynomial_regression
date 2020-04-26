@@ -1,52 +1,4 @@
-def get_dim(array):
-    '''returns height,width'''
-    if isinstance(array[0], list):
-        height = len(array)
-        width = len(array[0])
-    else:
-        height = 1
-        width = len(array)
-    return height,width
-
-def multiply(array1: list, array2: list):
-    '''Performs matrix multiplication. array1 times array2'''
-    height1, width1 = get_dim(array1)
-    height2, width2 = get_dim(array2)
-
-    array3 = []
-
-    for a in range(height1):
-        row =[]
-        for b in range(width2):
-            x = 0
-            for c in range(width1):
-                x += array1[a][c] * array2[c][b]
-            row.append(x)
-        array3.append(row)
-    return array3
-
-
-def add(array1, array2, coeff1 = 1, coeff2 = 1):
-    '''adds two matrices, they must have the same dimensions'''
-    height, width = get_dim(array1)
-    array3 = []
-    for y in range(height):
-        row = []
-        for x in range(width):
-            row.append(coeff1 * array1[y][x] + coeff2 * array2[y][x])
-        array3.append(row)
-    return array3
-
-def scale(array1, coeff):
-    '''Performs scalar multiplication of the inputed array by the coefficient'''
-    height, width = get_dim(array1)
-    array3 = []
-    for y in range(height):
-        row = []
-        for x in range(width):
-            row.append(array1[y][x] * coeff)
-        array3.append(row)
-    return array3
+import matplotlib.pyplot as plt, numpy
 
 def mean(xarr: list):
     '''returns the average of a list'''
@@ -63,20 +15,23 @@ def variance(xarr: list):
      The average squared distance from the mean
      '''
     variance = 0
+    mean_x = mean(xarr)
     for x in xarr:
-        variance += (mean() - x) ** 2
+        variance += (mean_x - x) ** 2
     variance /= len(xarr) #Population size = len(xarr)
 
     return variance
 
 def covariance(xarr: list, yarr: list):
-    ''''''
+    '''Returns population covariance:
+    The average product of the difference of x to the mean and the difference of y to the mean
+    '''
     meanx = mean(xarr)
     meany = mean(yarr)
 
     covar = 0
     for i in range(len(xarr)):
-        covar += (xarr - meanx) * (yarr - meany)
+        covar += (xarr[i] - meanx) * (yarr[i] - meany)
     covar /= len(xarr)
 
     return covar
@@ -88,3 +43,26 @@ def leastsquares(xarr: list, yarr: list):
     y_int = mean(yarr) - slope * mean(xarr)#Because the line goes through the point with mean x and mean y
 
     return slope, y_int
+
+def plot_line_data(xarr: list, yarr: list, xlabel = "", ylabel = "", title = ""):
+    '''Plots line and data with matplotlib'''
+    slope, y_int = leastsquares(xarr, yarr)
+    print(slope,y_int)
+    print(min(xarr), min(yarr))
+    x = numpy.arange(min(xarr), max(xarr), 0.001)
+
+    plt.scatter(xarr,yarr)
+    plt.plot(x, slope*x + y_int, "-g", label= "y = " + str(slope)+ " + " + str(y_int))
+
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+
+if __name__ == "__main__":
+    y_set = [1.22,1.17,1.15,1.1,1.1,1.05,1.03,0.95]
+    x_set = [0.05,0.095,0.125,0.19,0.22, 0.3,0.375,0.47]
+    plot_line_data(x_set, y_set,xlabel="Current",ylabel="Voltage", title="I-V Curve for Battery")
