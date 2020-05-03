@@ -1,5 +1,5 @@
 # polynomial_regression
-A series of functions for polynomial regression. This project is still in progress.
+A series of functions for polynomial regression. <b>This project is still in progress.</b>
 
 ## Least Squares
 Least squares regression produces the line of best fit which minimizes the square of the vertical offsets of each datapoint (their variance). The least squares equation is as follows:<br/>
